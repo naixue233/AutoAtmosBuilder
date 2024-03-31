@@ -725,6 +725,8 @@ if [ $? -ne 0 ]; then
     echo "AIO-Toolbox download\033[31m failed\033[0m."
 else
     echo "AIO-Toolbox download\033[32m success\033[0m."
+    | jq '.tag_name' \
+    | xargs -I {} echo AIO-Toolbox {} >> ../description.txt    
     unzip -oq AIO-Toolbox.zip
     rm AIO-Toolbox.zip
 fi
