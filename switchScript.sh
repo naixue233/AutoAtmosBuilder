@@ -73,7 +73,7 @@ else
 fi
 
 ### Fetch latest Bootloader-Resources from https://github.com/naixue233/SwitchScript
-curl -sL https://raw.github.com/naixue233/SwitchScript/main/resources/bootloader.zip -o bootloader.zip
+curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/bootloader.zip -o bootloader.zip
 if [ $? -ne 0 ]; then
     echo "Bootloader-Resources download\033[31m failed\033[0m."
 else
@@ -82,7 +82,7 @@ else
     rm bootloader.zip
 fi
 ### Fetch latest boot.dat-Resources from https://github.com/naixue233/SwitchScript
-curl -sL https://raw.github.com/naixue233/SwitchScript/main/resources/boot.dat -o boot.dat
+curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/boot.dat -o boot.dat
 if [ $? -ne 0 ]; then
     echo "boot.dat-Resources download\033[32m success\033[0m."
 else
