@@ -312,7 +312,7 @@ fi
 ### Fetch lastest Moonlight-Switch from https://github.com/XITRIX/Moonlight-Switch/releases/tag/v1.0.0
 curl -sL https://api.github.com/repos/XITRIX/Moonlight-Switch/releases/latest \
   | jq '.tag_name' \
-  | xargs -I {} echo NXThemesInstaller {} >> ../description.txt
+  | xargs -I {} echo Moonlight-Switch {} >> ../description.txt
 curl -sL https://api.github.com/repos/XITRIX/Moonlight-Switch/releases/latest \
   | jq '.assets' | jq '.[0].browser_download_url' \
   | xargs -I {} curl -sL {} -o Moonlight-Switch.nro
