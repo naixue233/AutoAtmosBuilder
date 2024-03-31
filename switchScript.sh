@@ -514,6 +514,15 @@ else
     echo "Writing exosphere.ini in root of SD card\033[32m success\033[0m."
 fi
 
+### write exosphere.ini in root of SD Card
+cat > ./千叶奈雪自动构建.txt << ENDOFFILE
+ENDOFFILE
+if [ $? -ne 0 ]; then
+    echo "Writing 千叶奈雪自动构建.txt in root of SD card\033[31m failed\033[0m."
+else
+    echo "Writing 千叶奈雪自动构建.txt in root of SD card\033[32m success\033[0m."
+fi
+
 ### Write emummc.txt in /atmosphere/hosts
 cat > ./atmosphere/hosts/emummc.txt << ENDOFFILE
 # Block Nintendo Servers
