@@ -89,8 +89,8 @@ if [ $? -ne 0 ]; then
 else
     echo "boot.dat-Resources download\033[32m success\033[0m."
 fi
-### Fetch latest SigPatches.zip from
-curl -sL https://sigmapatches.su/sigpatches.zip?12.02.2023 -o sigpatches.zip
+### Fetch latest SigPatches.zip from https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/
+curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/sigpatches.zip -o sigpatches.zip
 if [ $? -ne 0 ]; then
     echo "SigPatches download\033[31m failed\033[0m."
 else
