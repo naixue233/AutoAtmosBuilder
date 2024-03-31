@@ -44,7 +44,7 @@ cd SwitchSD
 
 ### Fetch latest atmosphere from https://github.com/Atmosphere-NX/Atmosphere/releases
 curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases \
-  | jq "name" \
+  | jq '.[] | .name' \
   | xargs -I {} echo {} >> ../description.txt
 curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases \
   | jq '.[0].assets' | jq '.[0].browser_download_url' \
