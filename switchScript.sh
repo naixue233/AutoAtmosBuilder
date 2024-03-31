@@ -721,8 +721,6 @@ fi
 
 ### Fetch AIO Toolbox
 curl -sL https://raw.github.com/JiuXia2025/SwitchScript/main/plugins/Ultrahand/AIO-Toolbox.zip -o AIO-Toolbox.zip
-  | jq '.tag_name' \
-  | xargs -I {} echo AIO-Toolbox {} >> ../description.txt
 if [ $? -ne 0 ]; then
     echo "AIO-Toolbox download\033[31m failed\033[0m."
 else
