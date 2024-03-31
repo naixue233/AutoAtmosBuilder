@@ -309,7 +309,19 @@ else
     echo "NXThemesInstaller download\033[32m success\033[0m."
     mv NXThemesInstaller.nro ./switch
 fi
-
+### Fetch lastest Moonlight-Switch from https://https://github.com/XITRIX/Moonlight-Switch/releases/tag/v1.0.0
+curl -sL https://api.github.com/repos/XITRIX/Moonlight-Switch/releases/latest \
+  | jq '.tag_name' \
+  | xargs -I {} echo NXThemesInstaller {} >> ../description.txt
+curl -sL https://api.github.com/repos/XITRIX/Moonlight-Switch/releases/latest \
+  | jq '.assets' | jq '.[0].browser_download_url' \
+  | xargs -I {} curl -sL {} -o Moonlight-Switch.nro
+if [ $? -ne 0 ]; then
+    echo "Moonlight-Switch download\033[31m failed\033[0m."
+else
+    echo "Moonlight-Switch download\033[32m success\033[0m."
+    mv Moonlight-Switch ./switch
+fi
 ### Fetch lastest JKSV from https://github.com/J-D-K/JKSV/releases/latest
 curl -sL https://api.github.com/repos/J-D-K/JKSV/releases/latest \
   | jq '.name' \
