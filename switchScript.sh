@@ -475,6 +475,25 @@ else
     echo "Writing hekate_ipl.ini in ./bootloader/ directory\033[32m success\033[0m."
 fi
 
+### Write nyx.ini in /bootloader/ directory
+cat > ./bootloader/nyx.ini << ENDOFFILE
+themebg=2d2d2d
+themecolor=332
+entries5col=0
+timeoff=edbe80
+homescreen=0
+verification=1
+umsemmcrw=0
+jcdisable=0
+jcforceright=0
+bpmpclock=1
+ENDOFFILE
+if [ $? -ne 0 ]; then
+    echo "Writing nyx.ini in ./bootloader/ directory\033[31m failed\033[0m."
+else
+    echo "Writing nyx.ini in ./bootloader/ directory\033[32m success\033[0m."
+fi
+
 ### write exosphere.ini in root of SD Card
 cat > ./exosphere.ini << ENDOFFILE
 [exosphere]
