@@ -44,34 +44,51 @@ mkdir -p ./SwitchSD/config/tesla
 cd SwitchSD
 
 ### Fetch latest atmosphere from https://github.com/Atmosphere-NX/Atmosphere/releases
-curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases \
-  | jq '.[0] | .name' \
-  | xargs -I {} echo {} >> ../description.txt
-curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases \
-  | jq '.[0].assets' | jq '.[0].browser_download_url' \
-  | xargs -I {} curl -sL {} -o atmosphere.zip
+# 获取 Atmosphere 的名称和版本号
+atmosphere_name=$(curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases \
+  | jq -r '.[0] | .name')
+echo "$atmosphere_name" >> ../description.txt
+
+# 下载 Atmosphere
+atmosphere_url=$(curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases \
+  | jq -r '.[0].assets' | jq -r '.[0].browser_download_url')
+curl -sL "$atmosphere_url" -o atmosphere.zip
 if [ $? -ne 0 ]; then
-    echo "atmosphere download\033[31m failed\033[0m."
+    echo "Atmosphere download failed."
 else
-    echo "atmosphere download\033[32m success\033[0m."
+    echo "Atmosphere download success."
     unzip -oq atmosphere.zip
     rm atmosphere.zip
 fi
 
-### Fetch latest Hekate + Nyx Chinese from https://github.com/easyworld/hekate/releases/latest
-curl -sL https://api.github.com/repos/easyworld/hekate/releases/latest \
-  | jq '.name' \
-  | xargs -I {} echo {} >> ../description.txt
-curl -sL https://api.github.com/repos/easyworld/hekate/releases/latest \
-  | jq '.assets' | jq '.[0].browser_download_url' \
-  | xargs -I {} curl -sL {} -o hekate.zip
+# 获取 Hekate + Nyx 的名称和版本号
+hekate_name=$(curl -sL https://api.github.com/repos/easyworld/hekate/releases/latest \
+  | jq -r '.name')
+echo "$hekate_name" >> ../description.txt
+
+# 下载 Hekate + Nyx
+hekate_url=$(curl -sL https://api.github.com/repos/easyworld/hekate/releases/latest \
+  | jq -r '.assets' | jq -r '.[0].browser_download_url')
+curl -sL "$hekate_url" -o hekate.zip
 if [ $? -ne 0 ]; then
-    echo "Hekate + Nyx download\033[31m failed\033[0m."
+    echo "Hekate + Nyx download failed."
 else
-    echo "Hekate + Nyx download\033[32m success\033[0m."
+    echo "Hekate + Nyx download success."
     unzip -oq hekate.zip
     rm hekate.zip
 fi
+
+# 写入到 "千叶奈雪自动构建.txt" 文件中
+cat > ./千叶奈雪自动构建.txt << ENDOFFILE
+Atmosphere: $atmosphere_name
+Hekate + Nyx: $hekate_name
+ENDOFFILE
+if [ $? -ne 0 ]; then
+    echo "Writing 千叶奈雪自动构建.txt failed."
+else
+    echo "Writing 千叶奈雪自动构建.txt success."
+fi
+
 
 ### Fetch latest Bootloader-Resources from https://github.com/naixue233/SwitchScript
 curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/bootloader.zip -o bootloader.zip
@@ -514,14 +531,6 @@ else
     echo "Writing exosphere.ini in root of SD card\033[32m success\033[0m."
 fi
 
-### write exosphere.ini in root of SD Card
-cat > ./千叶奈雪自动构建.txt << ENDOFFILE
-ENDOFFILE
-if [ $? -ne 0 ]; then
-    echo "Writing 千叶奈雪自动构建.txt in root of SD card\033[31m failed\033[0m."
-else
-    echo "Writing 千叶奈雪自动构建.txt in root of SD card\033[32m success\033[0m."
-fi
 
 ### Write emummc.txt in /atmosphere/hosts
 cat > ./atmosphere/hosts/emummc.txt << ENDOFFILE
