@@ -54,9 +54,9 @@ atmosphere_url=$(curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/
   | jq -r '.[0].assets' | jq -r '.[0].browser_download_url')
 curl -sL "$atmosphere_url" -o atmosphere.zip
 if [ $? -ne 0 ]; then
-    echo "Atmosphere download failed."
+    echo "Atmosphere download\033[31m failed\033[0m."
 else
-    echo "Atmosphere download success."
+    echo "Atmosphere download\033[32m success\033[0m."
     unzip -oq atmosphere.zip
     rm atmosphere.zip
 fi
@@ -71,17 +71,16 @@ hekate_url=$(curl -sL https://api.github.com/repos/easyworld/hekate/releases/lat
   | jq -r '.assets' | jq -r '.[0].browser_download_url')
 curl -sL "$hekate_url" -o hekate.zip
 if [ $? -ne 0 ]; then
-    echo "Hekate + Nyx download failed."
+    echo "Hekate + Nyx download\033[31m failed\033[0m."
 else
-    echo "Hekate + Nyx download success."
+    echo "Hekate + Nyx download\033[32m success\033[0m."
     unzip -oq hekate.zip
     rm hekate.zip
 fi
 
 # 写入到 "千叶奈雪自动构建.txt" 文件中
 cat > ./千叶奈雪自动构建.txt << ENDOFFILE
-Atmosphere: $atmosphere_name
-Hekate + Nyx: $hekate_name
+$atmosphere_name+$hekate_name
 ENDOFFILE
 if [ $? -ne 0 ]; then
     echo "Writing 千叶奈雪自动构建.txt failed."
