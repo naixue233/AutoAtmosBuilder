@@ -256,11 +256,25 @@ else
 fi
 
 ### Fetch lastest DBI from https://github.com/rashevskyv/dbi/releases/latest
-curl -sL https://api.github.com/repos/rashevskyv/dbi/releases/latest \
+#curl -sL https://api.github.com/repos/rashevskyv/dbi/releases/latest \
+  #| jq '.name' \
+  #| xargs -I {} echo {} >> ../description.txt
+#curl -sL https://api.github.com/repos/rashevskyv/dbi/releases/latest \
+  #| jq '.assets' | jq '.[1].browser_download_url' \
+  #| xargs -I {} curl -sL {} -o DBI.nro
+#if [ $? -ne 0 ]; then
+   # echo "DBI download\033[31m failed\033[0m."
+#else
+    #echo "DBI download\033[32m success\033[0m."
+    #mv DBI.nro ./switch/DBI
+#fi
+
+### Fetch lastest DBI from https:https://github.com/naixue233/SwitchScript
+curl -sL https://api.github.com/repos/naixue233/SwitchScript \
   | jq '.name' \
   | xargs -I {} echo {} >> ../description.txt
-curl -sL https://api.github.com/repos/rashevskyv/dbi/releases/latest \
-  | jq '.assets' | jq '.[1].browser_download_url' \
+curl -sL https://api.github.com/repos/naixue233/SwitchScript \
+  | jq '.assets' | jq '.[0].browser_download_url' \
   | xargs -I {} curl -sL {} -o DBI.nro
 if [ $? -ne 0 ]; then
     echo "DBI download\033[31m failed\033[0m."
