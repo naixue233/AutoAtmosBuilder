@@ -83,9 +83,9 @@ cat > ./千叶奈雪自动构建.txt << ENDOFFILE
 $atmosphere_name+$hekate_name
 ENDOFFILE
 if [ $? -ne 0 ]; then
-    echo "Writing 千叶奈雪自动构建.txt failed."
+    echo "Writing 千叶奈雪自动构建.txt\033[31m failed\033[0m."
 else
-    echo "Writing 千叶奈雪自动构建.txt success."
+    echo "Writing 千叶奈雪自动构建.txt\033[32m success\033[0m."
 fi
 
 
