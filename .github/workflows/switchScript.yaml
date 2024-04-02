@@ -31,7 +31,7 @@ jobs:
       run: |
         sudo -E apt install -y jq
     
-    - name: "Build & Release"
+    - name: "构建和发布 Build & Release"
       run: |
         echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
         echo "tag_name=$(date +%Y%m%d)" >> $GITHUB_ENV
@@ -39,13 +39,13 @@ jobs:
         ./$SCRIPT_SH
         zip -rq SwitchSD.zip SwitchSD
 
-    - name: Read description.txt
+    - name: "读取 description.txt"
       id: description
       uses: juliangruber/read-file-action@v1
       with:
         path: ./description.txt
 
-    - name: Create release
+    - name: "创建发布 Create release"
       uses: ncipollo/release-action@v1
       with:
         name: ${{ env.DATE }} ❤️ | 大气层雪的整合包 感谢九夏的脚本
@@ -56,7 +56,7 @@ jobs:
         body: "${{ steps.description.outputs.content }}"
         artifacts: "SwitchSD.zip"
 
-    - name: Remove old Releases
+    - name: "删除旧版本 Remove old Releases"
       uses: dev-drprasad/delete-older-releases@v0.3.2
       with:
         keep_latest: 5
