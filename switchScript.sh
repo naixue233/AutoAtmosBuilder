@@ -78,17 +78,6 @@ else
     rm hekate.zip
 fi
 
-# 写入到 "千叶奈雪自动构建.txt" 文件中
-cat > ./千叶奈雪自动构建.txt << ENDOFFILE
-$atmosphere_name+$hekate_name
-ENDOFFILE
-if [ $? -ne 0 ]; then
-    echo "Writing 千叶奈雪自动构建.txt\033[31m failed\033[0m."
-else
-    echo "Writing 千叶奈雪自动构建.txt\033[32m success\033[0m."
-fi
-
-
 ### Fetch latest Bootloader-Resources from https://github.com/naixue233/SwitchScript
 curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/bootloader.zip -o bootloader.zip
 if [ $? -ne 0 ]; then
@@ -689,6 +678,7 @@ fastcfwswitch
 Edizon-SE
 MissionControl
 sys-con
+DBI 647 中文版
 ENDOFFILE
 
 ### Fetch lastest Zing from https://github.com/tomvita/Zing/releases/latest
@@ -770,6 +760,16 @@ else
     rm AIO.zip
 fi
 
+# 写入到 "千叶奈雪自动构建.txt" 文件中
+cat > ./千叶奈雪自动构建.txt << ENDOFFILE
+$atmosphere_name+$hekate_name
+ENDOFFILE
+if [ $? -ne 0 ]; then
+    echo "Writing 千叶奈雪自动构建.txt\033[31m failed\033[0m."
+else
+    echo "Writing 千叶奈雪自动构建.txt\033[32m success\033[0m."
+fi
+
 ### Fetch Chinese lang
 mkdir -p switch/.overlays/lang/fastCFWswitch
 curl -sL https://raw.githubusercontent.com/zdm65477730/fastCFWswitch/master/lang/zh-Hans.json -o switch/.overlays/lang/fastCFWswitch/zh-Hans.json
@@ -808,4 +808,4 @@ ENDOFFILE
 # -------------------------------------------
 
 echo ""
-echo "\033[32mYour Switch SD card is prepared!\033[0m"
+echo "\033[32mYour Switch SD card is prepared! 千叶奈雪的自动构建已经完成\033[0m"
