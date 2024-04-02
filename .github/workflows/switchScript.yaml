@@ -48,71 +48,7 @@ jobs:
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
-        name: ${{ env.DATE }} ❤️ | name: switchScript
-
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'README.md'
-      - 'switchScript.sh'
-  schedule:
-    - cron: 0 0 * * *
-
-env:
-  SCRIPT_SH: switchScript.sh
-  TZ: Asia/Shanghai
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        ref: main
-    
-    - name: Initialization environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo -E apt install -y jq
-    
-    - name: "Build & Release"
-      run: |
-        echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
-        echo "tag_name=$(date +%Y%m%d)" >> $GITHUB_ENV
-        chmod +x $SCRIPT_SH
-        ./$SCRIPT_SH
-        zip -rq SwitchSD.zip SwitchSD
-
-    - name: Read description.txt
-      id: description
-      uses: juliangruber/read-file-action@v1
-      with:
-        path: ./description.txt
-
-    - name: Create release
-      uses: ncipollo/release-action@v1
-      with:
         name: ${{ env.DATE }} ❤️ | 大气层雪的整合包 感谢九夏的脚本
-        allowUpdates: true
-        tag: ${{ env.tag_name }}
-        commit: main
-        token: ${{ secrets.actions_release }}
-        body: "${{ steps.description.outputs.content }}"
-        artifacts: "SwitchSD.zip"
-
-    - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@v0.3.2
-      with:
-        keep_latest: 5
-        delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         allowUpdates: true
         tag: ${{ env.tag_name }}
         commit: main
@@ -126,4 +62,4 @@ jobs:
         keep_latest: 5
         delete_tags: true
       env:
-        GITHUB_TOKEN: ${{ secrets.actions_release }}
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
