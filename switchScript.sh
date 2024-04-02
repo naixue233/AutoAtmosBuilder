@@ -756,27 +756,14 @@ fi
     #rm AIO.zip
 #fi
 
-### Fetch lastest 4IFIR from https://github.com/rashevskyv/4IFIR/releases/
-curl -sL https://api.github.com/repos/rashevskyv/4IFIR/releases \
-  | jq '.tag_name' \
-  | xargs -I {} echo 4IFIR {} >> ../description.txt
-
-download_url=$(curl -sL https://api.github.com/repos/rashevskyv/4IFIR/releases \
-  | jq -r '.[0].assets[0].browser_download_url')
-
-if [ -n "$download_url" ]; then
-  curl -sL "$download_url" -o 4IFIR.zip
-  if [ $? -ne 0 ]; then
-      echo "4IFIR download\033[31m failed\033[0m."
-  else
-      echo "4IFIR download\033[32m success\033[0m."
-      unzip -oq 4IFIR.zip
-      rm 4IFIR.zip
-  fi
+curl -sL https://sintez.io/4IFIR.zip -o 4IFIR.zip
+if [ $? -ne 0 ]; then
+    echo "4IFIR download\033[31m failed\033[0m."
 else
-  echo "No assets found for download."
+    echo "4IFIR download\033[32m success\033[0m."
+    unzip -oq 4IFIR.zip
+    rm 4IFIR.zip
 fi
-
 
 
 # 写入到 "千叶奈雪自动构建.txt" 文件中
