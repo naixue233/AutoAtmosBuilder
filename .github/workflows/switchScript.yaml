@@ -9,7 +9,7 @@ on:
       - 'README.md'
       - 'switchScript.sh'
   schedule:
-    - cron: 0 0 * * *
+    - cron: 0 8 * * *
 
 env:
   SCRIPT_SH: switchScript.sh
@@ -31,7 +31,7 @@ jobs:
       run: |
         sudo -E apt install -y jq
     
-    - name: "构建和发布 Build & Release"
+    - name: "Build & Release"
       run: |
         echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
         echo "tag_name=$(date +%Y%m%d)" >> $GITHUB_ENV
@@ -39,27 +39,91 @@ jobs:
         ./$SCRIPT_SH
         zip -rq SwitchSD.zip SwitchSD
 
-    - name: "读取 description.txt"
+    - name: Read description.txt
       id: description
       uses: juliangruber/read-file-action@v1
       with:
         path: ./description.txt
 
-    - name: "创建发布 Create release"
+    - name: Create release
+      uses: ncipollo/release-action@v1
+      with:
+        name: ${{ env.DATE }} ❤️ | name: switchScript
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+      - 'switchScript.sh'
+  schedule:
+    - cron: 0 8 * * *
+
+env:
+  SCRIPT_SH: switchScript.sh
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        ref: main
+    
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo -E apt install -y jq
+    
+    - name: "Build & Release"
+      run: |
+        echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
+        echo "tag_name=$(date +%Y%m%d)" >> $GITHUB_ENV
+        chmod +x $SCRIPT_SH
+        ./$SCRIPT_SH
+        zip -rq SwitchSD.zip SwitchSD
+
+    - name: Read description.txt
+      id: description
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./description.txt
+
+    - name: Create release
       uses: ncipollo/release-action@v1
       with:
         name: ${{ env.DATE }} ❤️ | 大气层雪的整合包 感谢九夏的脚本
         allowUpdates: true
         tag: ${{ env.tag_name }}
         commit: main
-        token: ${{secrets.RELEASE_TOKEN}}
+        token: ${{ secrets.actions_release }}
         body: "${{ steps.description.outputs.content }}"
         artifacts: "SwitchSD.zip"
 
-    - name: "删除旧版本 Remove old Releases"
+    - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.3.2
       with:
         keep_latest: 5
         delete_tags: true
       env:
-        GITHUB_TOKEN: ${{secrets.RELEASE_TOKEN}}
+        GITHUB_TOKEN: ${{ secrets.actions_release }}
+        allowUpdates: true
+        tag: ${{ env.tag_name }}
+        commit: main
+        token: ${{ secrets.actions_release }}
+        body: "${{ steps.description.outputs.content }}"
+        artifacts: "SwitchSD.zip"
+
+    - name: Remove old Releases
+      uses: dev-drprasad/delete-older-releases@v0.3.2
+      with:
+        keep_latest: 5
+        delete_tags: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.actions_release }}
