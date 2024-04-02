@@ -761,7 +761,7 @@ else
 fi
 
 # 写入到 "千叶奈雪自动构建.txt" 文件中
-cat > ./千叶奈雪自动构建.txt << ENDOFFILE
+cat description.txt > 千叶奈雪自动构建.txt << ENDOFFILE
 $atmosphere_name+$hekate_name
 ENDOFFILE
 if [ $? -ne 0 ]; then
