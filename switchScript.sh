@@ -6,7 +6,7 @@ set -e
 ### Mod by huangqian8 & JiuXia2025 & naixue233
 
 # -------------------------------------------
-
+https://github.com/naixue233/naixue_nx_atm_Auto_Script/edit/main/switchScript.sh
 ### Install jq if not already installed
 ### if [ "$OSTYPE" = "msys" ]; then
   # Windows
@@ -755,15 +755,6 @@ fi
     #unzip -oq AIO.zip
     #rm AIO.zip
 #fi
-
-curl -sL https://sintez.io/4IFIR.zip -o 4IFIR.zip
-if [ $? -ne 0 ]; then
-    echo "4IFIR download\033[31m failed\033[0m."
-else
-    echo "4IFIR download\033[32m success\033[0m."
-    unzip -oq 4IFIR.zip
-    rm 4IFIR.zip
-fi
 
 
 # 写入到 "千叶奈雪自动构建.txt" 文件中
