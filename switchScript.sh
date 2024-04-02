@@ -6,7 +6,6 @@ set -e
 ### Mod by huangqian8 & JiuXia2025 & naixue233
 
 # -------------------------------------------
-https://github.com/naixue233/naixue_nx_atm_Auto_Script/edit/main/switchScript.sh
 ### Install jq if not already installed
 ### if [ "$OSTYPE" = "msys" ]; then
   # Windows
