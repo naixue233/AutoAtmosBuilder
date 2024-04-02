@@ -742,19 +742,35 @@ fi
 #fi
 
 ### Fetch lastest Switch-OC-Suite from https://github.com/hanai3Bi/Switch-OC-Suite/releases/latest
-curl -sL https://api.github.com/repos/hanai3Bi/Switch-OC-Suite/releases/latest \
+#curl -sL https://api.github.com/repos/hanai3Bi/Switch-OC-Suite/releases/latest \
+  #| jq '.tag_name' \
+  #| xargs -I {} echo Switch-OC-Suite {} >> ../description.txt
+#curl -sL https://api.github.com/repos/hanai3Bi/Switch-OC-Suite/releases/latest \
+  #| jq '.assets' | jq '.[0].browser_download_url' \
+  #| xargs -I {} curl -sL {} -o AIO.zip
+#if [ $? -ne 0 ]; then
+    #echo "Switch-OC-Suite download\033[31m failed\033[0m."
+#else
+    #echo "Switch-OC-Suite download\033[32m success\033[0m."
+    #unzip -oq AIO.zip
+    #rm AIO.zip
+#fi
+
+### Fetch lastest 4IFIR from https://github.com/rashevskyv/4IFIR/releases/
+curl -sL https://api.github.com/repos//rashevskyv/4IFIR/releases \
   | jq '.tag_name' \
-  | xargs -I {} echo Switch-OC-Suite {} >> ../description.txt
-curl -sL https://api.github.com/repos/hanai3Bi/Switch-OC-Suite/releases/latest \
+  | xargs -I {} echo 4IFIR {} >> ../description.txt
+curl -sL https://api.github.com/repos/rashevskyv/4IFIR/releases \
   | jq '.assets' | jq '.[0].browser_download_url' \
-  | xargs -I {} curl -sL {} -o AIO.zip
+  | xargs -I {} curl -sL {} -o 4IFIR.zip
 if [ $? -ne 0 ]; then
-    echo "Switch-OC-Suite download\033[31m failed\033[0m."
+    echo "4IFIR download\033[31m failed\033[0m."
 else
-    echo "Switch-OC-Suite download\033[32m success\033[0m."
-    unzip -oq AIO.zip
-    rm AIO.zip
+    echo "4IFIR download\033[32m success\033[0m."
+    unzip -oq 4IFIR.zip
+    rm 4IFIR.zip
 fi
+
 
 # 写入到 "千叶奈雪自动构建.txt" 文件中
 cat ../description.txt > 千叶奈雪自动构建.txt << ENDOFFILE
