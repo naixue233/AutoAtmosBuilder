@@ -254,13 +254,11 @@ fi
 
 ### Fetch latest dbi from https://github.com/naixue233/SwitchScript
 curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/dbi.nro -o dbi.nro
-curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/.dbi.nro.star -o .dbi.nro.star
 if [ $? -ne 0 ]; then
     echo "dbi download\033[32m success\033[0m."
 else
     echo "dbi download\033[32m success\033[0m."
     mv dbi.nro ./switch/DBI
-    mv .dbi.nro.star ./switch/DBI
 fi
 
 ### Fetch lastest Awoo Installer from https://github.com/dragonflylee/Awoo-Installer/releases/latest
