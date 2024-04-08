@@ -260,6 +260,7 @@ if [ $? -ne 0 ]; then
 else
     echo "dbi download\033[32m success\033[0m."
     mv dbi.nro ./switch/DBI
+    mv .dbi.nro.star ./switch/DBI
 fi
 
 ### Fetch lastest Awoo Installer from https://github.com/dragonflylee/Awoo-Installer/releases/latest
