@@ -84,7 +84,7 @@ fi
 ### Fetch latest boot.dat-Resources from https://github.com/naixue233/SwitchScript
 curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/boot.dat -o boot.dat
 if [ $? -ne 0 ]; then
-    echo "boot.dat-Resources download\033[32m success\033[0m."
+    echo "boot.dat-Resources download\033[31m failed\033[0m."
 else
     echo "boot.dat-Resources download\033[32m success\033[0m."
 fi
@@ -252,15 +252,13 @@ fi
     #mv DBI.nro ./switch/DBI
 #fi
 
-### Fetch latest dbi from https://github.com/naixue233/SwitchScript
-curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/dbi.nro -o dbi.nro
+curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/boot.dat -o boot.dat
 if [ $? -ne 0 ]; then
-    echo "dbi download\033[32m success\033[0m."
+    echo "boot.dat-Resources download\033[31m failed\033[0m."
 else
-    echo "dbi download\033[32m success\033[0m."
-    mv dbi.nro ./switch/DBI
+    echo "boot.dat-Resources download\033[32m success\033[0m."
+    mv DBI.nro ./switch/DBI
 fi
-
 ### Fetch lastest Awoo Installer from https://github.com/dragonflylee/Awoo-Installer/releases/latest
 curl -sL https://api.github.com/repos/dragonflylee/Awoo-Installer/releases/latest \
   | jq '.name' \
