@@ -3,6 +3,7 @@
 - 特斯拉菜单按键：L+↓，hbmenu插件菜单按键：直接点击相册 进入普通相册按住R键进入
 - 整合包如有问题反馈建议讨论请直接发送邮件到1853064742@qq.com或者直接在[问题](https://github.com/naixue233/naixue_nx_atm_Auto_Script/issues) 里面直接提出 看到就会修复
 - 整合包自动构建，请下载最新release使用。所有大气层相关组件与插件自动同步上游最新版本
+- 丢一个[原版大气层链接](https://github.com/Atmosphere-NX/Atmosphere)方便更新
 ## 更新日志
 - 2024-04-08 17:43 DBI添加为星标文件
 - 2024-04-01 添加AIO工具箱(@jiuxia2025)
