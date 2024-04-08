@@ -487,6 +487,7 @@ fi
 
 ### Write nyx.ini in /bootloader/ directory
 cat > ./bootloader/nyx.ini << ENDOFFILE
+[config]
 themebg=2d2d2d
 themecolor=332
 entries5col=0
