@@ -252,11 +252,11 @@ fi
     #mv DBI.nro ./switch/DBI
 #fi
 
-curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/boot.dat -o boot.dat
+curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/DBI.nro -o DBI.nro
 if [ $? -ne 0 ]; then
-    echo "boot.dat-Resources download\033[31m failed\033[0m."
+    echo "DBI.nro download\033[31m failed\033[0m."
 else
-    echo "boot.dat-Resources download\033[32m success\033[0m."
+    echo "DBI.nro download\033[32m success\033[0m."
     mv DBI.nro ./switch/DBI
 fi
 ### Fetch lastest Awoo Installer from https://github.com/dragonflylee/Awoo-Installer/releases/latest
