@@ -783,6 +783,11 @@ else
     rm AIO.zip
 fi
 
+cat > ./config/tesla << ENDOFFILE
+[tesla]
+key_combo=L+DDOWN
+ENDOFFILE
+
 
 # 写入到 "千叶奈雪自动构建.txt" 文件中
 cat ../description.txt > 千叶奈雪自动构建.txt << ENDOFFILE
