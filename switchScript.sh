@@ -791,13 +791,6 @@ curl -sL https://raw.githubusercontent.com/zdm65477730/sys-clk/develop/overlay/l
 mkdir -p config/ultrahand/lang
 curl -sL https://raw.githubusercontent.com/ppkantorski/Ultrahand-Overlay/main/lang/zh-cn.json -o config/ultrahand/lang/zh-cn.json
 
-### Delete sys-clk.ovl
-rm switch/.overlays/sys-clk.ovl
-
-### Delete reboot_to_payload.nro & reboot_to_hekate.nro
-rm switch/reboot_to_payload.nro
-rm switch/reboot_to_hekate.nro
-
 ### Write sort.cfg in /config/Tesla-Menu/sort.cfg
 cat > ./config/Tesla-Menu/sort.cfg << ENDOFFILE
 EdiZon
