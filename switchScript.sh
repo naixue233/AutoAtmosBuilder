@@ -696,7 +696,7 @@ if [ $? -ne 0 ]; then
 else
     echo "Zing download\033[32m success\033[0m."
     mv Zing.ovl ./switch/.overlays
-
+fi
 
 
 ### Fetch lastest Zing from https://github.com/tomvita/Zing/releases/latest
