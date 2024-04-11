@@ -82,6 +82,16 @@ else
     unzip -oq bootloader.zip
     rm bootloader.zip
 fi
+
+curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/Tesla.zip -o Tesla.zip
+if [ $? -ne 0 ]; then
+    echo "Tesla download\033[31m failed\033[0m."
+else
+    echo "Tesla download\033[32m success\033[0m."
+    unzip -oq Tesla.zip
+    rm Tesla.zip
+fi
+
 ### Fetch latest boot.dat-Resources from https://github.com/naixue233/SwitchScript
 curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/boot.dat -o boot.dat
 if [ $? -ne 0 ]; then
