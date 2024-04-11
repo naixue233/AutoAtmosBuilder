@@ -640,8 +640,9 @@ else
     echo "MissionControl download\033[32m success\033[0m."
     unzip -oq MissionControl.zip
     rm MissionControl.zip
-    mv MissionControl /atmosphere/contents
+    mv MissionControl ./atmosphere
 fi
+
 
 
 ### Write config.ini in Ultrahand-Overlay
