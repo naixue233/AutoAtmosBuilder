@@ -700,15 +700,15 @@ fi
 ### Fetch lastest Zing from https://github.com/tomvita/Zing/releases/latest
 curl -sL https://api.github.com/repos/WerWolv/EdiZon/releases/ \
   | jq '.tag_name' \
-  | xargs -I {} ovledizon {} >> ../description.txt
+  | xargs -I {} ovlEdiZon {} >> ../description.txt
 curl -sL https://api.github.com/repos/WerWolv/EdiZon/releases/ \
   | jq '.assets' | jq '.[0].browser_download_url' \
-  | xargs -I {} curl -sL {} -o ovledizon.ovl
+  | xargs -I {} curl -sL {} -o ovlEdiZon.ovl
 if [ $? -ne 0 ]; then
-    echo "edizon download\033[31m failed\033[0m."
+    echo "ovledizon download\033[31m failed\033[0m."
 else
-    echo "edizon download\033[32m success\033[0m."
-    mv ovledizon.ovl ./switch/.overlays
+    echo "ovledizon download\033[32m success\033[0m."
+    mv ovlEdiZon.ovl ./switch/.overlays
 fi
 ### Fetch sys-tune
 curl -sL https://raw.githubusercontent.com/huangqian8/SwitchPlugins/main/plugins/sys-tune.zip -o sys-tune.zip
