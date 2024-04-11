@@ -40,6 +40,7 @@ mkdir -p ./SwitchSD/bootloader
 mkdir -p ./SwitchSD/bootloader/ini
 mkdir -p ./SwitchSD/bootloader/res
 mkdir -p ./SwitchSD/config/tesla
+mkdir -p ./SwitchSD/atmosphere/contents
 cd SwitchSD
 
 ### Fetch latest atmosphere from https://github.com/Atmosphere-NX/Atmosphere/releases
@@ -609,20 +610,7 @@ else
     echo "Writing system_settings.ini in ./atmosphere/config\033[32m success\033[0m."
 fi
 
-### Fetch lastest Tesla3 from https://github.com/laila509/Tesla-plugins/releases/latest
-curl -sL https://api.github.com/repos/laila509/Tesla-plugins/releases/latest \
-  | jq '.assets' | jq '.[2].browser_download_url' \
-  | xargs -I {} curl -sL {} -o tesla.zip
-if [ $? -ne 0 ]; then
-    echo "tesla download\033[31m failed\033[0m."
-else
-    echo "tesla download\033[32m success\033[0m."
-    unzip -oq tesla.zip
-    rm tesla.zip
-    rm 大气层Tesla终极版插件包.txt
-    rm -rf switch/DeepSea-Toolbox
-    rm switch/.overlays/ovlmenu.ovl
-fi
+
 
 ### Fetch lastest Ultrahand-Overlay from https://github.com/ppkantorski/Ultrahand-Overlay/releases/latest
 curl -sL https://api.github.com/repos/ppkantorski/Ultrahand-Overlay/releases/latest \
