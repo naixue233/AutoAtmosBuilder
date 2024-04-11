@@ -783,7 +783,7 @@ else
     rm AIO.zip
 fi
 
-cat > ./config/tesla << ENDOFFILE
+cat > ./config/tesla/config.ini << ENDOFFILE
 [tesla]
 key_combo=L+DDOWN
 ENDOFFILE
