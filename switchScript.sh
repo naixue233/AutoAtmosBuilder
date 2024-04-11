@@ -696,13 +696,15 @@ if [ $? -ne 0 ]; then
 else
     echo "Zing download\033[32m success\033[0m."
     mv Zing.ovl ./switch/.overlays
-fi
+
+
+
 ### Fetch lastest Zing from https://github.com/tomvita/Zing/releases/latest
 curl -sL https://api.github.com/repos/WerWolv/EdiZon/releases/ \
   | jq '.tag_name' \
   | xargs -I {} ovlEdiZon {} >> ../description.txt
 curl -sL https://api.github.com/repos/WerWolv/EdiZon/releases/ \
-  | jq '.assets' | jq '.[0].browser_download_url' \
+  | jq '.assets' | jq '.[1].browser_download_url' \
   | xargs -I {} curl -sL {} -o ovlEdiZon.ovl
 if [ $? -ne 0 ]; then
     echo "ovledizon download\033[31m failed\033[0m."
