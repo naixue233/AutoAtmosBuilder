@@ -40,7 +40,7 @@ mkdir -p ./SwitchSD/bootloader
 mkdir -p ./SwitchSD/bootloader/ini
 mkdir -p ./SwitchSD/bootloader/res
 mkdir -p ./SwitchSD/config/tesla
-mkdir -p ./SwitchSD/atmosphere/contents
+mkdir -p ./SwitchSD/config/Tesla-Menu/
 cd SwitchSD
 
 ### Fetch latest atmosphere from https://github.com/Atmosphere-NX/Atmosphere/releases
@@ -640,6 +640,22 @@ else
     echo "MissionControl download\033[32m success\033[0m."
     unzip -oq MissionControl.zip
     rm MissionControl.zip
+fi
+
+curl -sL https://api.github.com/repos/WerWolv/Tesla-Menu/releases/latest \
+  | jq '.tag_name' \
+  | xargs -I {} echo Tesla-Menu {} >> ../description.txt
+
+curl -sL https://api.github.com/repos/WerWolv/Tesla-Menu/releases/latest \
+  | jq '.assets' | jq '.[0].browser_download_url' \
+  | xargs -I {} curl -sL {} -o Tesla-Menu.zip
+
+if [ $? -ne 0 ]; then
+    echo "Tesla-Menu download\033[31m failed\033[0m."
+else
+    echo "Tesla-Menu download\033[32m success\033[0m."
+    unzip -oq Tesla-Menu.zip
+    rm Tesla-Menu.zip
 fi
 
 
