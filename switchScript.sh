@@ -700,7 +700,7 @@ fi
 ### Fetch lastest Zing from https://github.com/tomvita/Zing/releases/latest
 curl -sL https://api.github.com/repos/WerWolv/EdiZon/releases/ \
   | jq '.tag_name' \
-  | xargs -I {} ovledizon Zing {} >> ../description.txt
+  | xargs -I {} ovledizon {} >> ../description.txt
 curl -sL https://api.github.com/repos/WerWolv/EdiZon/releases/ \
   | jq '.assets' | jq '.[0].browser_download_url' \
   | xargs -I {} curl -sL {} -o ovledizon.ovl
@@ -774,11 +774,6 @@ else
     unzip -oq AIO.zip
     rm AIO.zip
 fi
-
-cat > ./config/tesla/config.ini << ENDOFFILE
-[tesla]
-key_combo=L+DDOWN
-ENDOFFILE
 
 
 # 写入到 "千叶奈雪自动构建.txt" 文件中
