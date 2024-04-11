@@ -551,10 +551,6 @@ else
 fi
 
 ### Write boot.ini in root of SD Card
-cat > ./boot.ini << ENDOFFILE
-[payload]
-file=payload.bin
-ENDOFFILE
 if [ $? -ne 0 ]; then
     echo "Writing boot.ini in root of SD card\033[31m failed\033[0m."
 else
