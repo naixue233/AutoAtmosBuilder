@@ -698,25 +698,6 @@ else
     mv Zing.ovl ./switch/.overlays
 fi
 
-### Fetch lastest Zing from https://github.com/tomvita/Zing/releases/latest
-# 获取 EdiZon 的版本号并写入 description.txt
-curl -sL https://api.github.com/repos/WerWolv/EdiZon/releases/ \
-  | jq -r '.tag_name' \
-  | xargs -I {} echo "ovlEdiZon {}" >> ../description.txt
-
-# 下载 EdiZon
-curl -sL https://api.github.com/repos/WerWolv/EdiZon/releases/ \
-  | jq -r '.assets' | jq -r '.[1].browser_download_url' \
-  | xargs -I {} curl -sL {} -o ovlEdiZon.ovl
-
-# 检查下载是否成功，并移动文件到指定目录
-if [ $? -ne 0 ]; then
-    echo "ovledizon download failed."
-else
-    echo "ovledizon download success."
-    mkdir -p ./switch/.overlays  # 确保目录存在
-    mv ovlEdiZon.ovl ./switch/.overlays
-fi
 
 ### Fetch sys-tune
 curl -sL https://raw.githubusercontent.com/huangqian8/SwitchPlugins/main/plugins/sys-tune.zip -o sys-tune.zip
