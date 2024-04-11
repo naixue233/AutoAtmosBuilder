@@ -642,22 +642,6 @@ else
     rm MissionControl.zip
 fi
 
-curl -sL https://api.github.com/repos/WerWolv/Tesla-Menu/releases/latest \
-  | jq '.tag_name' \
-  | xargs -I {} echo Tesla-Menu {} >> ../description.txt
-
-curl -sL https://api.github.com/repos/WerWolv/Tesla-Menu/releases/latest \
-  | jq '.assets' | jq '.[0].browser_download_url' \
-  | xargs -I {} curl -sL {} -o Tesla-Menu.zip
-
-if [ $? -ne 0 ]; then
-    echo "Tesla-Menu download\033[31m failed\033[0m."
-else
-    echo "Tesla-Menu download\033[32m success\033[0m."
-    unzip -oq Tesla-Menu.zip
-    rm Tesla-Menu.zip
-fi
-
 
 
 ### Write config.ini in Ultrahand-Overlay
@@ -717,7 +701,19 @@ else
     echo "Zing download\033[32m success\033[0m."
     mv Zing.ovl ./switch/.overlays
 fi
-
+### Fetch lastest Zing from https://github.com/tomvita/Zing/releases/latest
+curl -sL https://api.github.com/repos/WerWolv/EdiZon/releases/ \
+  | jq '.tag_name' \
+  | xargs -I {} ovledizon Zing {} >> ../description.txt
+curl -sL https://api.github.com/repos/WerWolv/EdiZon/releases/ \
+  | jq '.assets' | jq '.[0].browser_download_url' \
+  | xargs -I {} curl -sL {} -o ovledizon.ovl
+if [ $? -ne 0 ]; then
+    echo "edizon download\033[31m failed\033[0m."
+else
+    echo "edizon download\033[32m success\033[0m."
+    mv ovledizon.ovl ./switch/.overlays
+fi
 ### Fetch sys-tune
 curl -sL https://raw.githubusercontent.com/huangqian8/SwitchPlugins/main/plugins/sys-tune.zip -o sys-tune.zip
 if [ $? -ne 0 ]; then
