@@ -28,6 +28,7 @@ if [ -e description.txt ]; then
   rm -rf description.txt
 fi
 mkdir -p ./SwitchSD/atmosphere/config
+mkdir -p ./SwitchSD/atmosphere/exefs_patches/nfim_ctest
 mkdir -p ./SwitchSD/atmosphere/hosts
 mkdir -p ./SwitchSD/switch/DBI
 mkdir -p ./SwitchSD/switch/Goldleaf
@@ -91,6 +92,20 @@ else
     unzip -oq Tesla.zip
     rm Tesla.zip
 fi
+
+# 下载wifi补丁文件
+curl -sL https://github.com/naixue233/naixue_nx_atm_Auto_Script/raw/main/resources/C4C2220D90155B139E254179D2D35244B32C9C1.zip
+
+# 检查下载是否成功
+if [ $? -ne 0 ]; then
+    echo "WIFI Patch download\033[31m failed\033[0m."
+else
+    echo "WIFI Patch download\033[32m success\033[0m."
+    # 确保目录存在并移动补丁文件
+    mkdir -p atmosphere/exefs_patches/nfim_ctest
+    mv C4C2220D90155B139E254179D2D35244B32C9C1.zip atmosphere/exefs_patches/nfim_ctest
+fi
+
 
 ### Fetch latest boot.dat-Resources from https://github.com/naixue233/SwitchScript
 curl -sL https://raw.github.com/naixue233/naixue_nx_atm_Auto_Script/main/resources/boot.dat -o boot.dat
