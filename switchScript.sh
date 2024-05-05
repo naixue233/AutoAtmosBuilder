@@ -194,8 +194,6 @@ else
     rm -rf wiliwili
     rm wiliwili-NintendoSwitch.zip
 fi
-liwili-NintendoSwitch.zip
-fi
 
 
 ### Fetch lastest HB-Appstore from https://github.com/fortheusers/hb-appstore/releases/latest
