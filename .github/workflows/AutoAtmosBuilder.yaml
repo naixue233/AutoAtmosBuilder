@@ -1,4 +1,4 @@
-name: switchScript
+name: AutoAtmosBuilder
 
 on:
   workflow_dispatch:
@@ -7,12 +7,12 @@ on:
       - main
     paths:
       - 'README.md'
-      - 'switchScript.sh'
+      - 'AutoAtmosBuilder.sh'
   schedule:
     - cron: 0 0 * * *
 
 env:
-  SCRIPT_SH: switchScript.sh
+  SCRIPT_SH: AutoAtmosBuilder.sh
   TZ: Asia/Shanghai
 
 jobs:
