@@ -176,23 +176,40 @@ else
     mv CommonProblemResolver.bin ./bootloader/payloads
 fi
 
-### Fetch lastest wiliwili from https://github.com/xfangfang/wiliwili/releases/latest
-#curl -sL https://api.github.com/repos/xfangfang/wiliwili/releases/latest \
-#  | jq '.tag_name' \
-#  | xargs -I {} echo wiliwili {} >> ../description.txt
-#curl -sL https://api.github.com/repos/xfangfang/wiliwili/releases/latest \
-#  | jq '.assets' | jq '.[7].browser_download_url' \
-#  | xargs -I {} curl -sL {} -o wiliwili-NintendoSwitch.zip
-#if [ $? -ne 0 ]; then
-#    echo "wiliwili download\033[31m failed\033[0m."
-#else
-#    echo "wiliwili download\033[32m success\033[0m."
-#    unzip -oq wiliwili-NintendoSwitch.zip
-#    mkdir -p ./switch/wiliwili
-#    mv wiliwili/wiliwili.nro ./switch/wiliwili
-#    rm -rf wiliwili
-#    rm wiliwili-NintendoSwitch.zip
-#fi
+
+
+latest_release=$(curl -sL https://api.github.com/repos/xfangfang/wiliwili/releases/latest)
+# Extract tag name
+tag_name=$(echo "$latest_release" | jq -r '.tag_name')
+# Check if tag name is not empty
+if [ -n "$tag_name" ]; then
+    echo "Latest version of wiliwili: $tag_name"
+    # Extract download URL for Nintendo Switch
+    download_url=$(echo "$latest_release" | jq -r '.assets | .[] | select(.name | test("NintendoSwitch")) | .browser_download_url')
+    # Check if download URL is not empty
+    if [ -n "$download_url" ]; then
+        echo "Downloading wiliwili for Nintendo Switch..."
+       # Download wiliwili for Nintendo Switch
+        curl -sL "$download_url" -o wiliwili-NintendoSwitch.zip
+        # Check if download was successful
+        if [ $? -eq 0 ]; then
+            echo "wiliwili download succeeded."
+            # Extract wiliwili.nro and move to switch directory
+            unzip -oq wiliwili-NintendoSwitch.zip
+            mkdir -p ./switch/wiliwili
+            mv wiliwili/wiliwili.nro ./switch/wiliwili
+           # Clean up downloaded files
+            rm -rf wiliwili
+            rm wiliwili-NintendoSwitch.zip
+        else
+            echo "wiliwili download failed."
+        fi
+    else
+        echo "Download URL for wiliwili Nintendo Switch version not found."
+    fi
+else
+    echo "Failed to fetch latest version of wiliwili."
+fi
 
 ### Fetch lastest HB-Appstore from https://github.com/fortheusers/hb-appstore/releases/latest
 curl -sL https://api.github.com/repos/fortheusers/hb-appstore/releases/latest \
