@@ -58,7 +58,9 @@ else
     unzip -oq atmosphere.zip
     rm atmosphere.zip
 fi
-curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases/fusee.bin -o fusee.bin
+curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases \
+  | jq '.[1] | .name' \
+curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases \
   | jq '.[1].assets' | jq '.[1].browser_download_url' \
   | xargs -I {} curl -sL {} -o fusee.bin
 if [ $? -ne 0 ]; then
