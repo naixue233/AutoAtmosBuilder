@@ -32,7 +32,7 @@
 ```
 - 首先感谢[九夏的原版自动构建](https://github.com/JiuXia2025/SwitchScript)
 - 特斯拉菜单按键：L+↓，hbmenu插件菜单按键：直接点击相册 进入普通相册按住R键进入
-- 整合包如有问题反馈建议讨论请直接发送邮件到1853064742@qq.com或者直接在[问题](https://github.com/naixue233/AutoAtmosBuilder/issues) 里面直接提出 看到就会修复
+- 整合包如有问题反馈建议讨论请直接发送邮件到1853064742@qq.com备用邮箱magisk233@gmail.com或者直接在[问题](https://github.com/naixue233/AutoAtmosBuilder/issues) 里面直接提出 看到就会修复
 - 丢一个[原版大气层链接](https://github.com/Atmosphere-NX/Atmosphere)方便更新
 - 此项目由我业余维护更新,禁止任何人二次贩卖本整合包
 - 整合包二改定制[@JiuXia2025](https://github.com/JiuXia2025/)脚本后打包而成，加入了一些原有脚本未包含的内容并且会持续更新
