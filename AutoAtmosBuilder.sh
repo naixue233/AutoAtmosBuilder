@@ -733,39 +733,39 @@ else
 fi
 
 ### Fetch Ultra_Tuner
-curl -sL https://raw.github.com/JiuXia2025/SwitchScript/main/plugins/Ultrahand/Ultra_Tuner.zip -o Ultra_Tuner.zip
+# curl -sL https://raw.github.com/JiuXia2025/SwitchScript/main/plugins/Ultrahand/Ultra_Tuner.zip -o Ultra_Tuner.zip
+# if [ $? -ne 0 ]; then
+#     echo "Ultra_Tuner download\033[31m failed\033[0m."
+# else
+#     echo "Ultra_Tuner download\033[32m success\033[0m."
+#     unzip -oq Ultra_Tuner.zip
+#     rm Ultra_Tuner.zip
+# fi
+
+## Fetch Switch-OC-Suite(hnayzdf ver.) from https://www.tekqart.com/thread-370908-1-1.html
+curl -sL https://raw.github.com/JiuXia2025/SwitchScript/main/plugins/Switch-OC-Suite.zip -o Switch-OC-Suite.zip
 if [ $? -ne 0 ]; then
-    echo "Ultra_Tuner download\033[31m failed\033[0m."
+   echo "Switch-OC-Suite download\033[31m failed\033[0m."
 else
-    echo "Ultra_Tuner download\033[32m success\033[0m."
-    unzip -oq Ultra_Tuner.zip
-    rm Ultra_Tuner.zip
+   echo "Switch-OC-Suite download\033[32m success\033[0m."
+   unzip -oq Switch-OC-Suite.zip
+   rm Switch-OC-Suite.zip
 fi
 
-### Fetch Switch-OC-Suite(hnayzdf ver.) from https://www.tekqart.com/thread-370908-1-1.html
-#curl -sL https://raw.github.com/JiuXia2025/SwitchScript/main/plugins/Switch-OC-Suite.zip -o Switch-OC-Suite.zip
-#if [ $? -ne 0 ]; then
-#    echo "Switch-OC-Suite download\033[31m failed\033[0m."
-#else
-#    echo "Switch-OC-Suite download\033[32m success\033[0m."
-#    unzip -oq Switch-OC-Suite.zip
-#    rm Switch-OC-Suite.zip
-#fi
-
-### Fetch lastest Switch-OC-Suite from https://github.com/hanai3Bi/Switch-OC-Suite/releases/latest
-curl -sL https://api.github.com/repos/hanai3Bi/Switch-OC-Suite/releases/latest \
-  | jq '.tag_name' \
-  | xargs -I {} echo Switch-OC-Suite {} >> ../description.txt
-curl -sL https://api.github.com/repos/hanai3Bi/Switch-OC-Suite/releases/latest \
-  | jq '.assets' | jq '.[0].browser_download_url' \
-  | xargs -I {} curl -sL {} -o AIO.zip
-if [ $? -ne 0 ]; then
-    echo "Switch-OC-Suite download\033[31m failed\033[0m."
-else
-    echo "Switch-OC-Suite download\033[32m success\033[0m."
-    unzip -oq AIO.zip
-    rm AIO.zip
-fi
+# ### Fetch lastest Switch-OC-Suite from https://github.com/hanai3Bi/Switch-OC-Suite/releases/latest
+# curl -sL https://api.github.com/repos/hanai3Bi/Switch-OC-Suite/releases/latest \
+#   | jq '.tag_name' \
+#   | xargs -I {} echo Switch-OC-Suite {} >> ../description.txt
+# curl -sL https://api.github.com/repos/hanai3Bi/Switch-OC-Suite/releases/latest \
+#   | jq '.assets' | jq '.[0].browser_download_url' \
+#   | xargs -I {} curl -sL {} -o AIO.zip
+# if [ $? -ne 0 ]; then
+#     echo "Switch-OC-Suite download\033[31m failed\033[0m."
+# else
+#     echo "Switch-OC-Suite download\033[32m success\033[0m."
+#     unzip -oq AIO.zip
+#     rm AIO.zip
+# fi
 
 
 # 写入到 "千叶奈雪自动构建.txt" 文件中
