@@ -506,7 +506,7 @@ fi
 cat > ./bootloader/nyx.ini << ENDOFFILE
 [config]
 themebg=2d2d2d
-themecolor=332
+themecolor=320
 entries5col=0
 timeoff=edbe80
 homescreen=0
