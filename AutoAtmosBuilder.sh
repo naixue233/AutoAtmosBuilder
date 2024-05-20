@@ -39,6 +39,7 @@ mkdir -p ./SwitchSD/themes
 mkdir -p ./SwitchSD/bootloader
 mkdir -p ./SwitchSD/bootloader/ini
 mkdir -p ./SwitchSD/bootloader/res
+mkdir -p ./SwitchSD/bootloader/payloads
 mkdir -p ./SwitchSD/config/tesla
 mkdir -p ./SwitchSD/config/Tesla-Menu/
 cd SwitchSD
@@ -57,7 +58,13 @@ else
     unzip -oq atmosphere.zip
     rm atmosphere.zip
 fi
-
+curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases/fusee.bin -o fusee.bin
+if [ $? -ne 0 ]; then
+    echo "fusee.bin download\033[31m failed\033[0m."
+else
+    echo "fusee.bin download\033[32m success\033[0m."
+    mv fusee.bin ./bootloader/payloads
+fi
 ### Fetch latest Hekate + Nyx Chinese from https://github.com/easyworld/hekate/releases/latest
 curl -sL https://api.github.com/repos/easyworld/hekate/releases/latest \
   | jq '.name' \
