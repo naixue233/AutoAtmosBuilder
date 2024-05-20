@@ -622,18 +622,18 @@ fi
 
 
 ### Fetch lastest Ultrahand-Overlay from https://github.com/ppkantorski/Ultrahand-Overlay/releases/latest
-curl -sL https://api.github.com/repos/ppkantorski/Ultrahand-Overlay/releases/latest \
-  | jq '.tag_name' \
-  | xargs -I {} echo Ultrahand-Overlay {} >> ../description.txt
-curl -sL https://api.github.com/repos/ppkantorski/Ultrahand-Overlay/releases/latest \
-  | jq '.assets' | jq '.[1].browser_download_url' \
-  | xargs -I {} curl -sL {} -o ovlmenu.ovl
-if [ $? -ne 0 ]; then
-    echo "Ultrahand-Overlay download\033[31m failed\033[0m."
-else
-    echo "Ultrahand-Overlay download\033[32m success\033[0m."
-    mv ovlmenu.ovl ./switch/.overlays
-fi
+# curl -sL https://api.github.com/repos/ppkantorski/Ultrahand-Overlay/releases/latest \
+#   | jq '.tag_name' \
+#   | xargs -I {} echo Ultrahand-Overlay {} >> ../description.txt
+# curl -sL https://api.github.com/repos/ppkantorski/Ultrahand-Overlay/releases/latest \
+#   | jq '.assets' | jq '.[1].browser_download_url' \
+#   | xargs -I {} curl -sL {} -o ovlmenu.ovl
+# if [ $? -ne 0 ]; then
+#     echo "Ultrahand-Overlay download\033[31m failed\033[0m."
+# else
+#     echo "Ultrahand-Overlay download\033[32m success\033[0m."
+#     mv ovlmenu.ovl ./switch/.overlays
+# fi
 
 curl -sL https://api.github.com/repos/ndeadly/MissionControl/releases/latest \
   | jq '.tag_name' \
@@ -653,30 +653,30 @@ fi
 
 
 
-### Write config.ini in Ultrahand-Overlay
-mkdir -p config/ultrahand
-cat > ./config/ultrahand/config.ini << ENDOFFILE
-[ultrahand]
-default_lang = zh-cn
-default_menu = overlays
-last_menu = overlays
-in_overlay = false
-key_combo = L+DDOWN
-hide_user_guide = false
-clean_version_labels = true
-hide_overlay_versions = false
-hide_package_versions = false
-datetime_format = '%a %T'
-hide_clock = false
-hide_battery = true
-hide_pcb_temp = true
-hide_soc_temp = true
-ENDOFFILE
-if [ $? -ne 0 ]; then
-    echo "Write config.ini in Ultrahand-Overlay\033[31m failed\033[0m."
-else
-    echo "Write config.ini in Ultrahand-Overlay\033[32m success\033[0m."
-fi
+# ### Write config.ini in Ultrahand-Overlay
+# mkdir -p config/ultrahand
+# cat > ./config/ultrahand/config.ini << ENDOFFILE
+# [ultrahand]
+# default_lang = zh-cn
+# default_menu = overlays
+# last_menu = overlays
+# in_overlay = false
+# key_combo = L+DDOWN
+# hide_user_guide = false
+# clean_version_labels = true
+# hide_overlay_versions = false
+# hide_package_versions = false
+# datetime_format = '%a %T'
+# hide_clock = false
+# hide_battery = true
+# hide_pcb_temp = true
+# hide_soc_temp = true
+# ENDOFFILE
+# if [ $? -ne 0 ]; then
+#     echo "Write config.ini in Ultrahand-Overlay\033[31m failed\033[0m."
+# else
+#     echo "Write config.ini in Ultrahand-Overlay\033[32m success\033[0m."
+# fi
 
 ###
 cat >> ../description.txt << ENDOFFILE
