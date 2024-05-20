@@ -59,6 +59,8 @@ else
     rm atmosphere.zip
 fi
 curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases/fusee.bin -o fusee.bin
+  | jq '.[1].assets' | jq '.[1].browser_download_url' \
+  | xargs -I {} curl -sL {} -o fusee.bin
 if [ $? -ne 0 ]; then
     echo "fusee.bin download\033[31m failed\033[0m."
 else
