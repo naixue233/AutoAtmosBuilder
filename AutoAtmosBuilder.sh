@@ -743,14 +743,14 @@ fi
 # fi
 
 ## Fetch Switch-OC-Suite(hnayzdf ver.) from https://www.tekqart.com/thread-370908-1-1.html
-curl -sL https://raw.github.com/JiuXia2025/SwitchScript/main/plugins/Switch-OC-Suite.zip -o Switch-OC-Suite.zip
-if [ $? -ne 0 ]; then
-   echo "Switch-OC-Suite download\033[31m failed\033[0m."
-else
-   echo "Switch-OC-Suite download\033[32m success\033[0m."
-   unzip -oq Switch-OC-Suite.zip
-   rm Switch-OC-Suite.zip
-fi
+# curl -sL https://raw.github.com/JiuXia2025/SwitchScript/main/plugins/Switch-OC-Suite.zip -o Switch-OC-Suite.zip
+# if [ $? -ne 0 ]; then
+#    echo "Switch-OC-Suite download\033[31m failed\033[0m."
+# else
+#    echo "Switch-OC-Suite download\033[32m success\033[0m."
+#    unzip -oq Switch-OC-Suite.zip
+#    rm Switch-OC-Suite.zip
+# fi
 
 # ### Fetch lastest Switch-OC-Suite from https://github.com/hanai3Bi/Switch-OC-Suite/releases/latest
 # curl -sL https://api.github.com/repos/hanai3Bi/Switch-OC-Suite/releases/latest \
