@@ -77,8 +77,8 @@ fi
 
 ### Fetch latest SysDVR from hhttps://github.com/exelix11/SysDVR
 curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
-  | jq '.name' \
-  | xargs -I {} echo "SysDVR {}" >> ../description.txt
+  | jq '.tag_name' \
+  | xargs -I {} echo SysDVR {} >> ../description.txt
 curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
   | jq '.assets' | jq '.[7].browser_download_url' \
   | xargs -I {} curl -sL {} -o SysDVR.zip
