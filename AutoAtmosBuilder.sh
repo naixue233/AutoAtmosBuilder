@@ -471,7 +471,7 @@ updater2p=1
 [大气层虚拟系统]
 emummcforce=1
 fss0=atmosphere/package3
-kip1patch=nosigchk
+kip1=atmosphere/kips/loader.kip
 icon=bootloader/res/icon_Atmosphere_emunand.bmp
 id=Atm-Emu
 {千叶奈雪自动构建}
@@ -479,7 +479,7 @@ id=Atm-Emu
 [大气层真实系统]
 emummc_force_disable=1
 fss0=atmosphere/package3
-kip1patch=nosigchk
+kip1=atmosphere/kips/loader.kip
 icon=bootloader/res/icon_Atmosphere_sysnand.bmp
 id=Atm-Sys
 {千叶奈雪自动构建}
@@ -501,6 +501,11 @@ id=Atm-Auto
 payload=bootloader/payloads/Lockpick_RCM.bin
 icon=bootloader/res/icon_lockpick.bmp
 id=RCM-Keys
+{千叶奈雪自动构建}
+[安全模式]
+fss0=atmosphere/package3
+emummc_force_disable=1
+cal0blank=0
 {千叶奈雪自动构建}
 ENDOFFILE
 if [ $? -ne 0 ]; then
