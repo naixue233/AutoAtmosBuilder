@@ -58,6 +58,7 @@ else
     unzip -oq atmosphere.zip
     rm atmosphere.zip
 fi
+
 ### Fetch latest Hekate + Nyx Chinese from https://github.com/easyworld/hekate/releases/latest
 curl -sL https://api.github.com/repos/easyworld/hekate/releases/latest \
   | jq '.name' \
@@ -71,6 +72,22 @@ else
     echo "Hekate + Nyx download\033[32m success\033[0m."
     unzip -oq hekate.zip
     rm hekate.zip
+fi
+
+
+### Fetch latest SysDVR from hhttps://github.com/exelix11/SysDVR
+curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
+  | jq '.name' \
+  | xargs -I {} echo {} >> ../description.txt
+curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
+  | jq '.assets' | jq '.[7].browser_download_url' \
+  | xargs -I {} curl -sL {} -o SysDVR.zip
+if [ $? -ne 0 ]; then
+    echo "SysDVR download\033[31m failed\033[0m."
+else
+    echo "SysDVR download\033[32m success\033[0m."
+    unzip -oq SysDVR.zip
+    rm SysDVR.zip
 fi
 
 ### Fetch latest Bootloader-Resources from https://github.com/naixue233/SwitchScript
