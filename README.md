@@ -31,7 +31,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 - 首先感谢[九夏的原版自动构建](https://github.com/JiuXia2025/SwitchScript)
-- [精简Lite版在](https://github.com/naixue233/AutoAtmosBuilder_Lite)
+- [精简Lite版在这里 点我](https://github.com/naixue233/AutoAtmosBuilder_Lite)
 - 特斯拉菜单按键：L+↓，hbmenu插件菜单按键：直接点击相册 进入普通相册按住R键进入
 - 整合包如有问题反馈建议讨论请直接发送邮件到1853064742@qq.com备用邮箱magisk233@gmail.com或者直接在[问题](https://github.com/naixue233/AutoAtmosBuilder/issues) 里面直接提出 看到就会修复
 - 丢一个[原版大气层链接](https://github.com/Atmosphere-NX/Atmosphere)方便更新
