@@ -39,6 +39,10 @@
 - 整合包二改定制[@JiuXia2025](https://github.com/JiuXia2025/)脚本后打包而成，加入了一些原有脚本未包含的内容并且会持续更新
 - 整合包自动构建，请下载最新release使用。所有大气层相关组件与插件自动同步上游最新版本
 ## 手动构建:
+-去Secrets and varibles
+actions
+在​Repository secrets里面
+​起一个名为 RELEASE_TOKEN 的变量 内容是你生成的ghp令牌
 - 运行switchScript.sh脚本，支持Windows/macOS/Linux
 ## 安装整合包（与其他整合包的安装方法一致）:
 - 删除原有大气层整合包相关文件夹
