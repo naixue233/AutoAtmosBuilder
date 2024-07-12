@@ -74,6 +74,20 @@ else
     rm hekate.zip
 fi
 
+### Fetch latest MissionControl from https://api.github.com/repos/ndeadly/MissionControl/releases/latest
+curl -sL https://api.github.com/repos/ndeadly/MissionControl/releases/latest \
+  | jq '.tag_name' \
+  | xargs -I {} echo MissionControl {} >> ../description.txt
+curl -sL https://api.github.com/repos/ndeadly/MissionControl/releases/latest \
+  | jq '.assets' | jq '.[0].browser_download_url' \
+  | xargs -I {} curl -sL {} -o MissionControl.zip
+if [ $? -ne 0 ]; then
+    echo "MissionControl download\033[31m failed\033[0m."
+else
+    echo "MissionControl download\033[32m success\033[0m."
+    unzip -oq MissionControl.zip
+    rm MissionControl.zip
+fi
 
 ### Fetch latest SysDVR from hhttps://github.com/exelix11/SysDVR
 curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
