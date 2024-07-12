@@ -112,9 +112,9 @@ curl -sL https://api.github.com/repos/masagrator/SaltyNX/releases/latest \
   | jq '.assets' | jq '.[0].browser_download_url' \
   | xargs -I {} curl -sL {} -o SaltyNX.zip
 if [ $? -ne 0 ]; then
-    echo "ldn_mitm download\033[31m failed\033[0m."
+    echo "SaltyNX download\033[31m failed\033[0m."
 else
-    echo "ldn_mitm download\033[32m success\033[0m."
+    echo "SaltyNX download\033[32m success\033[0m."
     unzip -oq SaltyNX.zip
     rm SaltyNX.zip
 fi
