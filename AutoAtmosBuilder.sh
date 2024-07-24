@@ -209,19 +209,19 @@ else
     mv hwfly_toolbox.bin ./bootloader/payloads
 fi
 
-### Fetch latest TegraExplorer.bin form https://github.com/zdm65477730/TegraExplorer/releases
-curl -sL https://api.github.com/repos/zdm65477730/TegraExplorer/releases/latest \
-  | jq '.tag_name' \
-  | xargs -I {} echo TegraExplorer {} >> ../description.txt
-curl -sL https://api.github.com/repos/zdm65477730/TegraExplorer/releases/latest \
-  | jq '.assets' | jq '.[0].browser_download_url' \
-  | xargs -I {} curl -sL {} -o TegraExplorer.bin
-if [ $? -ne 0 ]; then
-    echo "TegraExplorer download\033[31m failed\033[0m."
-else
-    echo "TegraExplorer download\033[32m success\033[0m."
-    mv TegraExplorer.bin ./bootloader/payloads
-fi
+# ### Fetch latest TegraExplorer.bin form https://github.com/zdm65477730/TegraExplorer/releases
+# curl -sL https://api.github.com/repos/zdm65477730/TegraExplorer/releases/latest \
+#   | jq '.tag_name' \
+#   | xargs -I {} echo TegraExplorer {} >> ../description.txt
+# curl -sL https://api.github.com/repos/zdm65477730/TegraExplorer/releases/latest \
+#   | jq '.assets' | jq '.[0].browser_download_url' \
+#   | xargs -I {} curl -sL {} -o TegraExplorer.bin
+# if [ $? -ne 0 ]; then
+#     echo "TegraExplorer download\033[31m failed\033[0m."
+# else
+#     echo "TegraExplorer download\033[32m success\033[0m."
+#     mv TegraExplorer.bin ./bootloader/payloads
+# fi
 
 ### Fetch latest CommonProblemResolver.bin form https://github.com/zdm65477730/CommonProblemResolver/releases
 curl -sL https://api.github.com/repos/zdm65477730/CommonProblemResolver/releases/latest \
