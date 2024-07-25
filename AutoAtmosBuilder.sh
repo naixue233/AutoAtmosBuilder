@@ -74,50 +74,7 @@ else
     rm hekate.zip
 fi
 
-### Fetch latest MissionControl from https://api.github.com/repos/ndeadly/MissionControl/releases/latest
-curl -sL https://api.github.com/repos/ndeadly/MissionControl/releases/latest \
-  | jq '.tag_name' \
-  | xargs -I {} echo MissionControl {} >> ../description.txt
-curl -sL https://api.github.com/repos/ndeadly/MissionControl/releases/latest \
-  | jq '.assets' | jq '.[0].browser_download_url' \
-  | xargs -I {} curl -sL {} -o MissionControl.zip
-if [ $? -ne 0 ]; then
-    echo "MissionControl download\033[31m failed\033[0m."
-else
-    echo "MissionControl download\033[32m success\033[0m."
-    unzip -oq MissionControl.zip
-    rm MissionControl.zip
-fi
 
-### Fetch latest ldn_mitm from https://api.github.com/repos/spacemeowx2/ldn_mitm/releases/latest
-curl -sL https://api.github.com/repos/spacemeowx2/ldn_mitm/releases/latest \
-  | jq '.tag_name' \
-  | xargs -I {} echo ldn_mitm {} >> ../description.txt
-curl -sL https://api.github.com/repos/spacemeowx2/ldn_mitm/releases/latest \
-  | jq '.assets' | jq '.[0].browser_download_url' \
-  | xargs -I {} curl -sL {} -o ldn_mitm.zip
-if [ $? -ne 0 ]; then
-    echo "ldn_mitm download\033[31m failed\033[0m."
-else
-    echo "ldn_mitm download\033[32m success\033[0m."
-    unzip -oq ldn_mitm.zip
-    rm ldn_mitm.zip
-fi
-
-### Fetch latest ldn_mitm from https://api.github.com/repos/masagrator/SaltyNX/releases/latest
-curl -sL https://api.github.com/repos/masagrator/SaltyNX/releases/latest \
-  | jq '.name' \
-  | xargs -I {} echo {} >> ../description.txt
-curl -sL https://api.github.com/repos/masagrator/SaltyNX/releases/latest \
-  | jq '.assets' | jq '.[0].browser_download_url' \
-  | xargs -I {} curl -sL {} -o SaltyNX.zip
-if [ $? -ne 0 ]; then
-    echo "SaltyNX download\033[31m failed\033[0m."
-else
-    echo "SaltyNX download\033[32m success\033[0m."
-    unzip -oq SaltyNX.zip
-    rm SaltyNX.zip
-fi
 
 ### Fetch latest SysDVR from hhttps://github.com/exelix11/SysDVR
 curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
@@ -209,6 +166,20 @@ else
     mv hwfly_toolbox.bin ./bootloader/payloads
 fi
 
+### Fetch latest MissionControl from https://api.github.com/repos/ndeadly/MissionControl/releases/latest
+curl -sL https://api.github.com/repos/ndeadly/MissionControl/releases/latest \
+  | jq '.tag_name' \
+  | xargs -I {} echo MissionControl {} >> ../description.txt
+curl -sL https://api.github.com/repos/ndeadly/MissionControl/releases/latest \
+  | jq '.assets' | jq '.[0].browser_download_url' \
+  | xargs -I {} curl -sL {} -o MissionControl.zip
+if [ $? -ne 0 ]; then
+    echo "MissionControl download\033[31m failed\033[0m."
+else
+    echo "MissionControl download\033[32m success\033[0m."
+    unzip -oq MissionControl.zip
+    rm MissionControl.zip
+fi
 # ### Fetch latest TegraExplorer.bin form https://github.com/zdm65477730/TegraExplorer/releases
 # curl -sL https://api.github.com/repos/zdm65477730/TegraExplorer/releases/latest \
 #   | jq '.tag_name' \
@@ -517,6 +488,36 @@ else
     echo "Rename hekate_ctcaer_*.bin to payload.bin\033[32m success\033[0m."
 fi
 
+
+### Fetch latest ldn_mitm from https://api.github.com/repos/spacemeowx2/ldn_mitm/releases/latest
+curl -sL https://api.github.com/repos/spacemeowx2/ldn_mitm/releases/latest \
+  | jq '.tag_name' \
+  | xargs -I {} echo ldn_mitm {} >> ../description.txt
+curl -sL https://api.github.com/repos/spacemeowx2/ldn_mitm/releases/latest \
+  | jq '.assets' | jq '.[0].browser_download_url' \
+  | xargs -I {} curl -sL {} -o ldn_mitm.zip
+if [ $? -ne 0 ]; then
+    echo "ldn_mitm download\033[31m failed\033[0m."
+else
+    echo "ldn_mitm download\033[32m success\033[0m."
+    unzip -oq ldn_mitm.zip
+    rm ldn_mitm.zip
+fi
+
+### Fetch latest ldn_mitm from https://api.github.com/repos/masagrator/SaltyNX/releases/latest
+curl -sL https://api.github.com/repos/masagrator/SaltyNX/releases/latest \
+  | jq '.name' \
+  | xargs -I {} echo {} >> ../description.txt
+curl -sL https://api.github.com/repos/masagrator/SaltyNX/releases/latest \
+  | jq '.assets' | jq '.[0].browser_download_url' \
+  | xargs -I {} curl -sL {} -o SaltyNX.zip
+if [ $? -ne 0 ]; then
+    echo "SaltyNX download\033[31m failed\033[0m."
+else
+    echo "SaltyNX download\033[32m success\033[0m."
+    unzip -oq SaltyNX.zip
+    rm SaltyNX.zip
+fi
 ### Write hekate_ipl.ini in /bootloader/ directory
 cat > ./bootloader/hekate_ipl.ini << ENDOFFILE
 [config]
