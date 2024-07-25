@@ -534,7 +534,6 @@ emummcforce=1
 fss0=atmosphere/package3
 kip1=atmosphere/kips/loader.kip
 icon=bootloader/res/icon_Atmosphere_emunand.bmp
-secmon=exosphere.bin
 id=Atm-Emu
 {千叶奈雪自动构建}
 
@@ -543,7 +542,6 @@ emummc_force_disable=1
 fss0=atmosphere/package3
 kip1=atmosphere/kips/loader.kip
 icon=bootloader/res/icon_Atmosphere_sysnand.bmp
-secmon=exosphere.bin
 id=Atm-Sys
 {千叶奈雪自动构建}
 
@@ -558,7 +556,6 @@ id=OFW-SYS
 [大气层自动识别]
 payload=bootloader/payloads/fusee.bin
 icon=bootloader/res/icon_ams.bmp
-secmon=exosphere.bin
 id=Atm-Auto
 {千叶奈雪自动构建}
 [RCM提取密钥]
@@ -581,6 +578,7 @@ fi
 ### Write nyx.ini in /bootloader/ directory
 cat > ./bootloader/nyx.ini << ENDOFFILE
 [config]
+themebg=2d2d2d
 themecolor=320
 entries5col=0
 timeoff=edbe80
