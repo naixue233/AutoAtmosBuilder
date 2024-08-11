@@ -42,6 +42,7 @@ mkdir -p ./SwitchSD/bootloader/res
 mkdir -p ./SwitchSD/bootloader/payloads
 mkdir -p ./SwitchSD/config/tesla
 mkdir -p ./SwitchSD/config/Tesla-Menu/
+mkdir -p ./SwitchSD/switch/.overlays
 cd SwitchSD
 
 ### Fetch latest atmosphere from https://github.com/Atmosphere-NX/Atmosphere/releases
