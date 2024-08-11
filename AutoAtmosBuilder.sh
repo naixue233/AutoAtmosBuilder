@@ -102,6 +102,7 @@ if [ $? -ne 0 ]; then
 else
     echo "ldn_mitm download\033[32m success\033[0m."
     unzip -oq ldn_mitm.zip
+    rm ./SwitchSD/switch/ldnmitm_config.ovl
     rm ldn_mitm.zip
 fi
 
