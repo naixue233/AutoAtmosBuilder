@@ -120,27 +120,27 @@ else
     rm SaltyNX.zip
 fi
 
-# ### Fetch latest SysDVR from hhttps://github.com/exelix11/SysDVR
-# curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
-#   | jq '.tag_name' \
-#   | xargs -I {} echo SysDVR {} >> ../description.txt
-# curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
-#   | jq '.assets' | jq '.[7].browser_download_url' \
-#   | xargs -I {} curl -sL {} -o SysDVR.zip
-# if [ $? -ne 0 ]; then
-#     echo "SysDVR download\033[31m failed\033[0m."
-# else
-#     echo "SysDVR download\033[32m success\033[0m."
-#     unzip -oq SysDVR.zip
-#     rm SysDVR.zip
-# fi
+### Fetch latest SysDVR from hhttps://github.com/exelix11/SysDVR
+curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
+  | jq '.tag_name' \
+  | xargs -I {} echo SysDVR {} >> ../description.txt
+curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
+  | jq '.assets' | jq '.[7].browser_download_url' \
+  | xargs -I {} curl -sL {} -o SysDVR.zip
+if [ $? -ne 0 ]; then
+    echo "SysDVR download\033[31m failed\033[0m."
+else
+    echo "SysDVR download\033[32m success\033[0m."
+    unzip -oq SysDVR.zip
+    rm SysDVR.zip
+fi
 
 ### Fetch lastest sys-clk from https://api.github.com/repos/retronx-team/sys-clk/releases/latest
 curl -sL https://api.github.com/repos/retronx-team/sys-clk/releases/latest \
   | jq '.tag_name' \
   | xargs -I {} echo sys-clk {} >> ../description.txt
 curl -sL https://api.github.com/repos/retronx-team/sys-clk/releases/latest \
-  | jq '.assets' | jq '.[1].browser_download_url' \
+  | jq '.assets' | jq '.[0].browser_download_url' \
   | xargs -I {} curl -sL {} -o sys_clk.zip
 if [ $? -ne 0 ]; then
     echo "sys-clk download\033[31m failed\033[0m."
