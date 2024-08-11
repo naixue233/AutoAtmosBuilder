@@ -135,10 +135,6 @@ else
     rm SysDVR.zip
 fi
 
-
-
-
-
 ### Fetch lastest sys-clk from https://api.github.com/repos/retronx-team/sys-clk/releases/latest
 curl -sL https://api.github.com/repos/retronx-team/sys-clk/releases/latest \
   | jq '.tag_name' \
