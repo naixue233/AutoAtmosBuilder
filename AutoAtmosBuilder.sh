@@ -147,7 +147,7 @@ if [ $? -ne 0 ]; then
 else
     echo "sys-clk download\033[32m success\033[0m."
     unzip -oq sys_clk.zip
-    rm readme.md
+    rm sys_clk.zip
 fi
 
 
