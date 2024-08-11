@@ -120,34 +120,52 @@ else
     rm SaltyNX.zip
 fi
 
-### Fetch latest SysDVR from hhttps://github.com/exelix11/SysDVR
+### Fetch latest SysDVR from https://github.com/exelix11/SysDVR
 curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
   | jq '.tag_name' \
   | xargs -I {} echo SysDVR {} >> ../description.txt
-curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
-  | jq '.assets' | jq '.[7].browser_download_url' \
-  | xargs -I {} curl -sL {} -o SysDVR.zip
-if [ $? -ne 0 ]; then
-    echo "SysDVR download\033[31m failed\033[0m."
+
+sysdvr_url=$(curl -sL https://api.github.com/repos/exelix11/SysDVR/releases/latest \
+  | jq -r '.assets[7].browser_download_url')
+
+if [ -z "$sysdvr_url" ]; then
+    echo "Failed to fetch SysDVR download URL."
+    exit 1
+fi
+
+curl -sL "$sysdvr_url" -o SysDVR.zip
+if [ $? -ne 0 ] || [ ! -s SysDVR.zip ]; then
+    echo -e "SysDVR download \033[31mfailed\033[0m."
+    exit 123
 else
-    echo "SysDVR download\033[32m success\033[0m."
+    echo -e "SysDVR download \033[32msuccess\033[0m."
     unzip -oq SysDVR.zip
     rm SysDVR.zip
 fi
 
-### Fetch lastest sys-clk from https://api.github.com/repos/retronx-team/sys-clk/releases/latest
+### Fetch latest sys-clk from https://api.github.com/repos/retronx-team/sys-clk/releases/latest
 curl -sL https://api.github.com/repos/retronx-team/sys-clk/releases/latest \
   | jq '.tag_name' \
   | xargs -I {} echo sys-clk {} >> ../description.txt
-curl -sL https://api.github.com/repos/retronx-team/sys-clk/releases/latest \
-  | jq '.assets' | jq '.[1].browser_download_url' \
-  | xargs -I {} curl -sL {} -o sys_clk.zip
-if [ $? -ne 0 ]; then
-    echo "sys-clk download\033[31m failed\033[0m."
-else
-    echo "sys-clk download\033[32m success\033[0m."
-    rm readme.md
+
+sysclk_url=$(curl -sL https://api.github.com/repos/retronx-team/sys-clk/releases/latest \
+  | jq -r '.assets[1].browser_download_url')
+
+if [ -z "$sysclk_url" ]; then
+    echo "Failed to fetch sys-clk download URL."
+    exit 1
 fi
+
+curl -sL "$sysclk_url" -o sys_clk.zip
+if [ $? -ne 0 ] || [ ! -s sys_clk.zip ]; then
+    echo -e "sys-clk download \033[31mfailed\033[0m."
+    exit 123
+else
+    echo -e "sys-clk download \033[32msuccess\033[0m."
+    unzip -oq sys_clk.zip
+    rm sys_clk.zip
+fi
+
 
 curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder/main/resources/Tesla.zip -o Tesla.zip
 if [ $? -ne 0 ]; then
