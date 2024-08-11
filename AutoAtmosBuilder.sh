@@ -137,14 +137,7 @@ fi
 
 
 
-curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder/main/resources/Tesla.zip -o Tesla.zip
-if [ $? -ne 0 ]; then
-    echo "Tesla download\033[31m failed\033[0m."
-else
-    echo "Tesla download\033[32m success\033[0m."
-    unzip -oq Tesla.zip
-    rm Tesla.zip
-fi
+
 
 ### Fetch lastest sys-clk from https://api.github.com/repos/retronx-team/sys-clk/releases/latest
 curl -sL https://api.github.com/repos/retronx-team/sys-clk/releases/latest \
@@ -160,7 +153,14 @@ else
     rm readme.md
 fi
 
-
+curl -sL https://raw.github.com/naixue233/AutoAtmosBuilder/main/resources/Tesla.zip -o Tesla.zip
+if [ $? -ne 0 ]; then
+    echo "Tesla download\033[31m failed\033[0m."
+else
+    echo "Tesla download\033[32m success\033[0m."
+    unzip -oq Tesla.zip
+    rm Tesla.zip
+fi
 
 ### Fetch lastest Ultrahand-Overlay from https://github.com/ppkantorski/Ultrahand-Overlay/releases/latest
 curl -sL https://api.github.com/repos/ppkantorski/Ultrahand-Overlay/releases/latest \
